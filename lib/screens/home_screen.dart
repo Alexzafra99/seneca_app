@@ -219,7 +219,7 @@ class _SingleCard extends StatelessWidget {
           children: [
           
             Container(
-              height: 45,
+              height: 44,
               width: 45,
               child: Image.asset(this.icon),           
             ),

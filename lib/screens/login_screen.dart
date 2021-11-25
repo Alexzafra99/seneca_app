@@ -54,12 +54,15 @@ class _ContentState extends State<Content> {
 
   String _user = "";
   String _password = "";
-
+  
+  bool _ocultarPassword = true;
+  IconData _iconoPassword = Icons.visibility;
+  
   @override
   Widget build(BuildContext context) {
 
     final resultadosLogin = Provider.of<LoginProvider>(context);
-
+  
     return ListView(
       children:[ 
         Center(
@@ -102,8 +105,7 @@ class _ContentState extends State<Content> {
                 onChanged: (valor){
                   setState(() {
                     _user=valor;
-                  });
-                  print(_user);         
+                  });     
                 },
               ),
             ),
@@ -115,6 +117,7 @@ class _ContentState extends State<Content> {
               height: 50,
               margin: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(
+                obscureText: _ocultarPassword,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   filled: true,
@@ -129,15 +132,24 @@ class _ContentState extends State<Content> {
                   hintText: "Contraseña",
                   hintStyle: TextStyle(color: Colors.white),
                   suffixIcon: GestureDetector(
-                    child: Icon(Icons.visibility,color: Colors.white)
-                    //onTap: ,
+                    child: Icon(_iconoPassword, color: Colors.white),
+                    onTap: (){
+                      setState(() {
+                        _ocultarPassword = !_ocultarPassword;
+                        if(_ocultarPassword){
+                          _iconoPassword = Icons.visibility;
+                        }
+                        else{
+                          _iconoPassword = Icons.visibility_off;
+                        }
+                      });
+                    },
                   )
                 ),
                 onChanged: (valor){
                   setState(() {
                     _password=valor;
                   });
-                  print(_password);
                 }
               ),
             ),
@@ -146,7 +158,6 @@ class _ContentState extends State<Content> {
     
             //Botón Entrar
             ElevatedButton(
-              /*onPressed: () => Navigator.pushNamed(context, "home_screen"),*/
               onPressed: () {
                for(int i=0; i<resultadosLogin.resultados.length; i++){
                   if(_user==resultadosLogin.resultados[i].user && _password==resultadosLogin.resultados[i].password){

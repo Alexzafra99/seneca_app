@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "181047267148",
+    "project_id": "login-33254",
+    "storage_bucket": "login-33254.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181047267148:android:2b62d2d0ccbb7403e589e9",
+        "android_client_info": {
+          "package_name": "com.example.seneca_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181047267148-pv9is0btune3uolgcgeibcfifvf0id7a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLPNSdraCcL9Ufrl_bE7Qjx6Sc06by3to"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181047267148-pv9is0btune3uolgcgeibcfifvf0id7a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

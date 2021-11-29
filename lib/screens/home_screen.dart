@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:seneca_app/services/firebase.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -43,6 +45,9 @@ class Background extends StatelessWidget {
 class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    User? user = FirebaseAuth.instance.currentUser;
+
     return ListView(
       children: [
         Center(
@@ -76,15 +81,28 @@ class Content extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("Zafra Romero, Alejandro", 
+                        Text(user!.displayName.toString(),//"Zafra Romero, Alejandro", 
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold
                           ),
                         ),
-                        SizedBox(width: 60),
+                        Expanded(child: SizedBox(width: 60)),
                         Icon(Icons.arrow_drop_down),
-                        Icon(Icons.people, size: 20)
+                        GestureDetector(
+                          child: Icon(Icons.people, size: 20),
+                          onTap: ()async {
+                            FirebaseService service = new FirebaseService();
+                            try {
+                              await service.signOutFromGoogle();
+                            } catch (e) {
+                              if (e is FirebaseAuthException) {
+                                print(e.message!);
+                              }
+                            };
+                            Navigator.pushNamed(context, "loginFireBase_screen");
+                          }
+                        )
                       ],
                     ),
                     

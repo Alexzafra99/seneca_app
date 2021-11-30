@@ -13,7 +13,7 @@ class EmailResponse {
 
     factory EmailResponse.fromJson(String str) => EmailResponse.fromMap(json.decode(str));
 
-    factory EmailResponse.fromMap(Map<dynamic, dynamic> json) => EmailResponse(
+    factory EmailResponse.fromMap(Map<String, dynamic> json) => EmailResponse(
         results: List<ResultEmail>.from(json["results"].map((x) => ResultEmail.fromMap(x))),
     );
 }
@@ -29,7 +29,7 @@ class ResultEmail {
 
     factory ResultEmail.fromJson(String str) => ResultEmail.fromMap(json.decode(str));
 
-    factory ResultEmail.fromMap(Map<dynamic, dynamic> json) => ResultEmail(
+    factory ResultEmail.fromMap(Map<String, dynamic> json) => ResultEmail(
         id: json["ID"],
         email: json["EMAIL"],
     );

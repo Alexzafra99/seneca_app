@@ -20,12 +20,10 @@ class _GoogleSignInState extends State<GoogleSignIn> {
   @override
   Widget build(BuildContext context) {
 
-    User? user = FirebaseAuth.instance.currentUser;
-
     final resultadosEmail = Provider.of<EmailProvider>(context);
     
     bool emailCorrecto = false;
-    
+
     return !isLoading
         ? Container(
             margin: EdgeInsets.only(top: 10),
@@ -40,9 +38,11 @@ class _GoogleSignInState extends State<GoogleSignIn> {
                 FirebaseService service = new FirebaseService();
                 try {
                   await service.signInWithGoogle();
-                  print(user!.email);
+
+                  User? user = FirebaseAuth.instance.currentUser;
+
                   for(int i=0; i<resultadosEmail.resultados.length; i++){
-                    if(user.email==resultadosEmail.resultados[i].email){
+                    if(user!.email==resultadosEmail.resultados[i].email){
                       emailCorrecto = true;
                     }
                   }
@@ -53,18 +53,7 @@ class _GoogleSignInState extends State<GoogleSignIn> {
                   else{
                     Navigator.pushNamed(context, "loginFireBase_screen");
 
-                    AlertDialog(
-                      title: Text("Usuario sin permiso"),
-                      content: Text("Intenta acceder con otro usuario"),
-                      actions: [
-                        TextButton(
-                          child: const Text('Ok'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
+                    _mostrarError(context);
 
                     await service.signOutFromGoogle();
                   }
@@ -100,3 +89,27 @@ class _GoogleSignInState extends State<GoogleSignIn> {
           );
   }
 }
+  _mostrarError(BuildContext context){
+    showDialog(
+      context: context, 
+      barrierDismissible: true,
+      builder: (context){
+        return AlertDialog(
+          title: Text("Error al iniciar sesión"),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Para acceder a la aplicación selecciona una cuenta con permisos"),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(), 
+              child: Text("Ok")
+            )
+          ],
+        );
+      }, 
+    ); 
+  }

@@ -18,7 +18,7 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=> LoginProvider(), lazy: false),
+        //ChangeNotifierProvider(create: (context)=> LoginProvider(), lazy: false),
         ChangeNotifierProvider(create: (context)=> EmailProvider(), lazy: false,)
       ],
       child: MyApp(),

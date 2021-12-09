@@ -26,7 +26,7 @@ class LoginProvider extends ChangeNotifier {
     final jsonData = await this._getJsonData();
    
     final loginData = LoginResponse.fromJson('{"results":'+jsonData+'}');
-    //final loginData = LoginResponse.fromJson('{results:[{"ID":"1","USER":"a","PASSWORD":"a"},{"ID":"2","USER":"b","PASSWORD":"b"},{"ID":"3","USER":"c","PASSWORD":"c"}]}');
+    //final loginData = LoginResponse.fromJson('{"results":[{"ID":"1","USER":"a","PASSWORD":"a"},{"ID":"2","USER":"b","PASSWORD":"b"},{"ID":"3","USER":"c","PASSWORD":"c"}]}');
 
     resultados = loginData.results;
     //print(resultados);

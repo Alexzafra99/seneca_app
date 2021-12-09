@@ -1,12 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:seneca_app/models/email_response.dart';
-import 'package:seneca_app/provider/email_provider.dart';
 import 'package:seneca_app/services/sign_in.dart';
 
 class LoginFireBaseScreen extends StatelessWidget {
@@ -14,14 +10,17 @@ class LoginFireBaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          //Background
-          Background(),
-          //Content
-          Content(),
-        ],
+    return WillPopScope(
+      onWillPop: () async => false, //Inhabilita el botón del dispositivo para volver atrás
+      child: Scaffold(
+        body: Stack(
+          children: [
+            //Background
+            Background(),
+            //Content
+            Content(),
+          ],
+        ),
       ),
     );
   }

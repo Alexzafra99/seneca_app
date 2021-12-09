@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:seneca_app/provider/email_provider.dart';
-import 'package:seneca_app/provider/login_provider.dart';
 import 'package:seneca_app/screens/home_screen.dart';
 import 'package:seneca_app/screens/loginFireBase_screen.dart';
 
